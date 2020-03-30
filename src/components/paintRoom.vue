@@ -2,7 +2,7 @@
   <div>
       <div class="users">
         <div class="user" v-for="(item, index) in list" :key="index">
-          <div class="head"><img :src="`https://www.bixiaohe.fun/${item.url}`"></div>
+          <div class="head"><img :src="item.url==null ? `https://www.bixiaohe.fun/img/default.jpg`: `https://www.bixiaohe.fun/${item.url}`"></div>
           <div class="name">{{ item.name }}</div>
         </div>
       </div>
@@ -40,7 +40,7 @@
             <el-slider v-model="pen.pellucidity" @change="changePellucidity(pen.pellucidity)" max="10"></el-slider>
           </div>
           <div>
-            <el-button>
+            <el-button :disabled="this.$route.query.houseId==-1" @click="save">
               保存画板
             </el-button>
           </div>
@@ -54,6 +54,7 @@ export default {
   data() {
     return{
       user: this.$store.state.user,
+      paintingId: -1,
       draw: false,
       list: [ this.$store.state.user ],
       pen: {
@@ -94,11 +95,15 @@ export default {
       ctx.lineWidth = this.pen.size
     },
     RoomInit(data){
+      console.log('initdata',data)
+      if(data.house.paintingId) {
+        this.paintingId = data.house.paintingId
+        console.log(this.paintingId)
+      }
       let canvas = document.getElementById('canv');
       let ctx = canvas.getContext('2d');
       let img = new Image()
-      console.log(data)
-      img.src = data
+      img.src = data.base64
       img.onload = () => {
         ctx.drawImage(img, 0, 0, 1000, 800); 
       }
@@ -113,6 +118,15 @@ export default {
           this.list = item.user
         }
       })
+    },
+    saveSuccess(res) {
+      if(res.paintingId) {
+        this.paintingId = res.paintingId
+      }
+      this.$message({
+        message: '保存成功',
+        type: 'success'
+      });
     }
   },
   methods: {
@@ -133,17 +147,22 @@ export default {
       gradientBar.addColorStop(1, '#f00')
       colorCtx.fillStyle = gradientBar
       colorCtx.fillRect(0,0,20,160)
-      color.addEventListener("mousedown", getColor, false);
+      if(that.$route.query.houseId>-1) { 
+        color.addEventListener("mousedown", getColor, false);
+       }
+      
 
       let canvas = document.getElementById('canv');
       let ctx = canvas.getContext('2d');
       ctx.lineCap = 'round'
       ctx.fillStyle = '#fff';
       ctx.fillRect(0,0,1000,800)
-      canvas.addEventListener("mousedown",doMouseDown,false);
-      canvas.addEventListener("mouseup",doMouseUp,false);
-      canvas.addEventListener("mousemove",doMouseMove,false);
-      canvas.addEventListener("mouseout",doMouseOut,false);
+      if(that.$route.query.houseId>-1) { 
+        canvas.addEventListener("mousedown",doMouseDown,false);
+        canvas.addEventListener("mouseup",doMouseUp,false);
+        canvas.addEventListener("mousemove",doMouseMove,false);
+        canvas.addEventListener("mouseout",doMouseOut,false);
+       }
 
       getColor(this.initPoint)
       //鼠标按下响应事件
@@ -246,14 +265,29 @@ export default {
       })
       ctx.globalAlpha = this.pen.pellucidity*0.1
     },
+    save() {
+      let time = new Date().valueOf()
+      console.log(this.list)
+      this.$socket.emit('saveCanv', {
+        houseId: this.$route.query.houseId,
+        paintingId: this.paintingId,
+        users: this.list,
+        time: time
+      })
+    }
   },
   mounted() {
+    if(this.$route.query.paintingId) {
+      this.paintingId = this.$route.query.paintingId
+    }
+    console.log(this.$route.query)
     this.canvInit()
     this.$nextTick(() => {
-    this.$socket.emit('RoomInit',{
-      houseId: this.$route.query.houseId,
-      userId: this.$store.state.user.id
-      })
+        this.$socket.emit('RoomInit', {
+        houseId: this.$route.query.houseId,
+        userId: this.$store.state.user.id,
+        paintingId: this.paintingId
+        })
     })
   }
 }
