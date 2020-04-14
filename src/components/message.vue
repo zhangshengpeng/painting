@@ -10,14 +10,14 @@
           <img
           v-if="user.url"
             style="width: 40px;height: 40px;border-radius: 50%;"
-            :src="'https://www.bixiaohe.fun'+user.url">
+            :src="'https://www.zsp.cool'+user.url">
         </div>
         <div style="padding-left: 50px">
           <p style="margin: 0;padding-bottom:8px">
             {{ user.name }}
           </p>
           <div style="background-color: rgb(0,163,120);padding: 10px;border-radius: 8px;color: white">
-            <img v-if="msg.url" class="img" :src="'https://www.bixiaohe.fun'+msg.url">
+            <img v-if="msg.url" class="img" :src="'https://www.zsp.cool'+msg.url">
             <img v-if="msg.src" style="width:50px;height:50px" class="img" :src="msg.src">
             {{ msg.message }}
           </div>
@@ -36,7 +36,7 @@
               <img
                 v-if="friend.url"
                 style="width: 40px;height: 40px;border-radius: 50%;"
-                :src="'https://www.bixiaohe.fun'+friend.url">
+                :src="'https://www.zsp.cool'+friend.url">
             </div>
             <div style="float: right;padding-right: 10px">
               <div style="overflow:hidden">
@@ -45,7 +45,7 @@
                 </p>
               </div>
               <div style="background-color: rgb(51,73,94);padding: 10px;border-radius: 8px;color: white">
-                <img v-if="msg.url" class="img" :src="'https://www.bixiaohe.fun'+msg.url">
+                <img v-if="msg.url" class="img" :src="'https://www.zsp.cool'+msg.url">
                 <img v-if="msg.src" style="width:50px;height:50px" class="img" :src="msg.src">
                 {{ msg.message }}
               </div>

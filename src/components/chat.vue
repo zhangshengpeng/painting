@@ -6,7 +6,7 @@
         <ul>
           <li v-if="!contactors.length" style="background: none; color:#aaaaaa; justify-content: center">暂无好友</li>
           <li v-for="(contactor, index) in contactors" :key="index" :class="index === isActive ? 'active':''" @click="handelclick(contactor,index)">
-            <img class="head-img" :src="'https://www.bixiaohe.fun'+contactor.url">
+            <img class="head-img" :src="'https://www.zsp.cool'+contactor.url">
             <span style="width:60px">{{ contactor.name }}</span>
             <span :class=" contactor.isNew ? 'new-msg' : ''" />
             <el-dropdown v-show="index === isActive" class="operation" size="small" @command="operation">
@@ -79,7 +79,7 @@ export default {
   },
   methods: {
     getFriend() {
-      this.$axios.post('https://www.bixiaohe.fun/friend-info')
+      this.$axios.post('https://www.zsp.cool/friend-info')
       .then((res)=>{
         this.contactors = res.data
         this.contactors.forEach((item, index) => {
@@ -99,7 +99,7 @@ export default {
       this.friend = item;
       this.page = 0
       this.contactors[i].isNew = false
-      this.$axios.post('https://www.bixiaohe.fun/history',
+      this.$axios.post('https://www.zsp.cool/history',
       {
         userId: this.user.id,
         friendId: item.id
@@ -133,7 +133,7 @@ export default {
       if(id==='check'){
         console.log(id)
       } else{
-          this.$axios.post('https://www.bixiaohe.fun/friend',{
+          this.$axios.post('https://www.zsp.cool/friend',{
           friend_id:id,
           user_id:this.user.id,
           operation: 'delete'
@@ -151,7 +151,7 @@ export default {
             type: 'error'
           });
       } else{
-          this.$axios.post('https://www.bixiaohe.fun/friend',{
+          this.$axios.post('https://www.zsp.cool/friend',{
           operation: 'add',
           friend_id: this.addId,
           user_id: this.user.id

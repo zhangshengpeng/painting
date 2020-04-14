@@ -29,10 +29,10 @@
               <div class="sign-form">
                 <p>账号</p>
                 <input class="ipt" type="text" v-model="signForm.id">
-                <p>密码</p>
-                <input class="ipt" type="password" v-model="signForm.password">
+                <p>昵称</p>
+                <input class="ipt" type="text" v-model="signForm.name">
                 <p>确认密码</p>
-                <input class="ipt" type="password">
+                <input class="ipt" type="password" v-model="signForm.password">
                 <div class="sign-submit">
                   <button
                     style="background: rgb(94,160,246)" @click="register">确定</button>
@@ -60,13 +60,14 @@ export default {
       },
       signForm: {
         id: '',
+        name: '',
         password: ''
       }
     }
   },
   methods: {
     register() {
-      this.$axios.post('https://www.bixiaohe.fun/insert', {
+      this.$axios.post('https://www.zsp.cool/insert', {
         id: this.signForm.id,
         password: this.signForm.password
       })
@@ -88,7 +89,7 @@ export default {
       })
     },
     login() {
-      this.$axios.post('https://www.bixiaohe.fun/login', {
+      this.$axios.post('https://www.zsp.cool/login', {
         id: this.loginForm.id,
         password: this.loginForm.password
       })

@@ -21,7 +21,7 @@
         trigger="hover"
         width="300">
         <div class="emoji-item">
-          <img v-for="(item,index) in emojis" :key="index" :src="`https://www.bixiaohe.fun/${item.src}`" @click="sendEmoji(index)">
+          <img v-for="(item,index) in emojis" :key="index" :src="`https://www.zsp.cool/${item.src}`" @click="sendEmoji(index)">
         </div>
         <img slot="reference" class="emoji" src="../assets/img/emoji.png">
       </el-popover>

@@ -2,7 +2,7 @@
   <div>
       <div class="users">
         <div class="user" v-for="(item, index) in list" :key="index">
-          <div class="head"><img :src="item.url==null ? `https://www.bixiaohe.fun/img/default.jpg`: `https://www.bixiaohe.fun/${item.url}`"></div>
+          <div class="head"><img :src="item.url==null ? `https://www.zsp.cool/img/default.jpg`: `https://www.zsp.cool/${item.url}`"></div>
           <div class="name">{{ item.name }}</div>
         </div>
       </div>

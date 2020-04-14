@@ -12,7 +12,7 @@ Vue.use(Vuex)
 
 Vue.use(new VueSocketio({
   debug: false,
-  connection: 'wss://www.bixiaohe.fun' //地址+端口，由后端提供
+  connection: 'wss://www.zsp.cool' //地址+端口，由后端提供
 }));
 
 //axios允许携带cookie

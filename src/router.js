@@ -8,6 +8,7 @@ import Hall from './components/hall.vue'
 import hallList from './components/hallList.vue'
 import Paint from './components/paintRoom.vue'
 import His from './components/history.vue'
+import test from './components/test.vue'
 
 export default new Router({
   routes: [
@@ -17,6 +18,7 @@ export default new Router({
         { path:'/', component:hallList },
         { path: '/paint', component: Paint, meta: '画室' } ,
         { path: '/history', component: His, meta: '历史记录' } ,
+        { path: '/test', component: test, meta: '表格' } ,
       ] 
     },
     

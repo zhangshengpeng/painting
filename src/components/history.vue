@@ -75,11 +75,11 @@ export default {
   },
   methods: {
     async getList() {
-      let res = await this.$axios.post('https://www.bixiaohe.fun/paint-history',{
+      let res = await this.$axios.post('https://www.zsp.cool/paint-history',{
       id: this.user.id
     })
     this.tableData = res.data
-    let r = await this.$axios.post('https://www.bixiaohe.fun/editors', {
+    let r = await this.$axios.post('https://www.zsp.cool/editors', {
       paints: this.tableData.map((item)=>{
         return item.paintingId
       })
@@ -103,7 +103,7 @@ export default {
       this.$router.push(`/paint?houseId=-1&paintingId=${row.paintingId}`)
     },
     async deletePaint(index,row) {
-      let res =  await this.$axios.post('https://www.bixiaohe.fun/delete-paint',{
+      let res =  await this.$axios.post('https://www.zsp.cool/delete-paint',{
         paintingId: row.paintingId
       })
       if(res.data.status === 1){

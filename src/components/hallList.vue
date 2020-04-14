@@ -4,7 +4,7 @@
     <div v-for="(item, index) in roomList" :key="index" class="room-container">
       <el-card :body-style="{ padding: '10px' }">
         <div class="image">
-          <img class="room-img" :src="`https://www.bixiaohe.fun/img/${item.type==='1'?'battle.jpg':'paint.jpg'}`" />
+          <img class="room-img" :src="`https://www.zsp.cool/img/${item.type==='1'?'battle.jpg':'paint.jpg'}`" />
         </div>
 
         <div style="padding: 14px;" class="text">

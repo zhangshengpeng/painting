@@ -19,16 +19,16 @@ const store = ()=>{
     },
     actions: {
       async getInfo(context) {
-        let response = await axios.get('https://www.bixiaohe.fun/user-info')
+        let response = await axios.get('https://www.zsp.cool/user-info')
         context.commit('setInfo',response.data)
         return response
       },
       async setHistory(context, params) {
-        let response = await axios.post('https://www.bixiaohe.fun/set-game', params)
+        let response = await axios.post('https://www.zsp.cool/set-game', params)
         return response
       },
       async getHistory(context, params) {
-        let response = await axios.post('https://www.bixiaohe.fun/get-game', params)
+        let response = await axios.post('https://www.zsp.cool/get-game', params)
         return response.data
       }
     }

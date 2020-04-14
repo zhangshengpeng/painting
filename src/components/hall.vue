@@ -26,7 +26,7 @@
       <aside class="left-container">
         <div style="width:60px;height:60px;padding-left:70px">
           <img 
-            :src=" user.url==null ?  `https://www.bixiaohe.fun/img/default.jpg` : `https://www.bixiaohe.fun${user.url}`"
+            :src=" user.url==null ?  `https://www.zsp.cool/img/default.jpg` : `https://www.zsp.cool${user.url}`"
             @click="changeInfo"
             class="head-img"
             style="width:60px"
@@ -47,8 +47,8 @@
     :visible.sync="showDialog">
       <el-form :model="upload" :rules="uploadRule" ref="upload" label-width="80px" style="margin:40px 0 0 40px;text-align:left;width:300px;">
           <el-form-item label="头像" prop="url">
-            <el-upload class="upload" action="https://www.bixiaohe.fun/upload-img" method="post" name="user" :on-success="headUpload">
-              <img v-if="upload.url" :src="'https://www.bixiaohe.fun'+upload.url" class="upload-img">
+            <el-upload class="upload" action="https://www.zsp.cool/upload-img" method="post" name="user" :on-success="headUpload">
+              <img v-if="upload.url" :src="'https://www.zsp.cool'+upload.url" class="upload-img">
               <i v-else class="el-icon-plus" />
             </el-upload>
           </el-form-item>
@@ -115,7 +115,7 @@ export default {
       this.$store.dispatch('getInfo')
       .then((response)=>{
         if(response.status == 1) {
-          window.location.href = 'https://www.bixiaohe.fun';
+          window.location.href = 'https://www.zsp.cool';
         } else {
           this.user = this.$store.state.user
           if(this.user.url == null) {
@@ -150,7 +150,7 @@ export default {
     uploadSubmit() {
       this.$refs.upload.validate((valid)=>{
         if(valid) {
-          this.$axios.post('https://www.bixiaohe.fun/upload-info',this.upload)
+          this.$axios.post('https://www.zsp.cool/upload-info',this.upload)
             .then((res) => {
               this.user.name = res.data.name
               this.user.address = res.data.address
@@ -163,7 +163,7 @@ export default {
       })
     },
     toChat() {
-      // window.open('https://www.bixiaohe.fun/chat')
+      // window.open('https://www.zsp.cool/chat')
       this.showChat = true
     }
   },
